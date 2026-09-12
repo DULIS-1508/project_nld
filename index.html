@@ -1,0 +1,1236 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>대학도서관 장애인서비스 조사</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --paper:#F5F3EE;
+    --surface:#FFFFFF;
+    --surface-2:#EFEDE6;
+    --ink:#20242B;
+    --ink-soft:#535A66;
+    --ink-faint:#7A8290;
+    --line:#DCD7CC;
+    --line-strong:#C6C0B3;
+    --primary:#2B4A73;
+    --primary-strong:#1E3654;
+    --primary-soft:#E7EDF4;
+    --teal:#2F7566;
+    --teal-soft:#E4F0EC;
+    --gold:#9C6B23;
+    --gold-soft:#F4E9D8;
+    --danger:#A23B3B;
+    --focus:#2B4A73;
+    --radius:10px;
+    --shadow: 0 1px 2px rgba(32,36,43,.06), 0 4px 14px rgba(32,36,43,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14181F;
+      --surface:#1B212B;
+      --surface-2:#232A35;
+      --ink:#EDEFF3;
+      --ink-soft:#B3BAC6;
+      --ink-faint:#828A98;
+      --line:#333B48;
+      --line-strong:#454F5E;
+      --primary:#8FB4E0;
+      --primary-strong:#B7D0EE;
+      --primary-soft:#20304A;
+      --teal:#7FCBB6;
+      --teal-soft:#1B3630;
+      --gold:#D9AE6E;
+      --gold-soft:#3A2E17;
+      --danger:#E39A9A;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 18px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14181F;
+    --surface:#1B212B;
+    --surface-2:#232A35;
+    --ink:#EDEFF3;
+    --ink-soft:#B3BAC6;
+    --ink-faint:#828A98;
+    --line:#333B48;
+    --line-strong:#454F5E;
+    --primary:#8FB4E0;
+    --primary-strong:#B7D0EE;
+    --primary-soft:#20304A;
+    --teal:#7FCBB6;
+    --teal-soft:#1B3630;
+    --gold:#D9AE6E;
+    --gold-soft:#3A2E17;
+    --danger:#E39A9A;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 18px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Noto Sans KR","Malgun Gothic",sans-serif;
+    line-height:1.62;
+    padding-inline:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:"Noto Serif KR",serif; text-wrap:balance; margin:0;}
+  a{color:var(--primary);}
+  .wrap{max-width:920px; margin-inline:auto; padding-block:28px 80px;}
+
+  /* top nav */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    margin-inline:calc(-1 * max(16px, (100vw - 920px)/2));
+    padding-inline:max(16px, (100vw - 920px)/2);
+  }
+  .topbar-inner{max-width:920px;margin-inline:auto;display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:thin;}
+  .topbar-inner::-webkit-scrollbar{height:5px;}
+  .topbar-inner::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:4px;}
+  .navchip{
+    flex:0 0 auto; font-size:.82rem; font-weight:500; color:var(--ink-soft);
+    padding:6px 12px; border-radius:999px; border:1px solid transparent; white-space:nowrap;
+    text-decoration:none;
+  }
+  .navchip:hover{border-color:var(--line-strong); color:var(--ink);}
+  .navchip.active{background:var(--primary-soft); color:var(--primary-strong); border-color:transparent;}
+
+  /* masthead */
+  .masthead{padding-block:26px 18px;}
+  .eyebrow{font-size:.78rem; letter-spacing:.08em; color:var(--ink-faint); font-weight:700; text-transform:uppercase;}
+  h1{font-size:clamp(1.5rem,3.6vw,2.05rem); font-weight:700; margin-top:8px; color:var(--ink);}
+  .subtitle{font-family:"Noto Serif KR",serif; font-size:1.05rem; color:var(--primary-strong); margin-top:4px;}
+  .draft-tag{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:.8rem;font-weight:700;color:var(--gold);background:var(--gold-soft);border-radius:999px;padding:5px 12px;}
+  .lede{max-width:66ch; color:var(--ink-soft); font-size:.98rem; margin-top:16px;}
+
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:22px clamp(16px,3vw,30px); margin-top:18px;
+  }
+  .provenance{background:var(--surface-2); font-size:.86rem; color:var(--ink-soft); border-left:3px solid var(--primary); }
+  .provenance b{color:var(--ink);}
+  .fillfield{
+    display:inline-block; min-width:7ch; border-bottom:1px dashed var(--primary); color:var(--primary-strong); font-weight:600; padding:0 2px;
+  }
+
+  .meta-table{width:100%; border-collapse:collapse; font-size:.92rem; margin-top:10px;}
+  .meta-table td{padding:7px 10px; border:1px solid var(--line);}
+  .meta-table td:first-child{width:9.5em; color:var(--ink-soft); background:var(--surface-2); font-weight:500;}
+
+  .notes{margin:14px 0 0; padding:12px 14px; border:1px dashed var(--line-strong); border-radius:8px; font-size:.86rem; color:var(--ink-soft); background:var(--surface-2);}
+  .notes li{margin:3px 0;}
+
+  /* respondent panel */
+  .respondent{border-color:var(--primary); background:linear-gradient(180deg, var(--primary-soft), var(--surface) 140px);}
+  .field-row{display:flex; flex-wrap:wrap; gap:14px; margin-top:14px;}
+  .field{display:flex; flex-direction:column; gap:6px; flex:1 1 220px;}
+  .field.small{flex:0 1 140px;}
+  .field label{font-size:.84rem; font-weight:600; color:var(--ink-soft);}
+  .req::after{content:" *"; color:var(--danger);}
+  input[type="text"], input[type="number"], input[type="tel"]{
+    font:inherit; padding:9px 10px; border:1px solid var(--line-strong); border-radius:8px; background:var(--surface); color:var(--ink);
+    width:100%;
+  }
+  input:focus-visible, button:focus-visible, a:focus-visible{outline:2px solid var(--focus); outline-offset:2px;}
+  .branch-note{margin-top:12px; font-size:.86rem; color:var(--primary-strong); background:var(--primary-soft); border-radius:8px; padding:10px 12px;}
+
+  .choice-group{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;}
+  .choice{
+    display:flex; align-items:center; gap:7px; border:1px solid var(--line-strong); border-radius:8px;
+    padding:8px 13px; font-size:.92rem; cursor:pointer; background:var(--surface);
+  }
+  .choice:has(input:checked){border-color:var(--primary); background:var(--primary-soft); color:var(--primary-strong); font-weight:600;}
+  .choice input{accent-color:var(--primary);}
+
+  /* section shell */
+  .section{margin-top:34px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; border-bottom:2px solid var(--ink); padding-bottom:10px;}
+  .section-num{
+    font-family:"Noto Serif KR",serif; font-size:1.55rem; font-weight:700; color:var(--primary-strong);
+    flex:0 0 auto;
+  }
+  .section-title{font-family:"Noto Serif KR",serif; font-size:1.28rem; font-weight:600;}
+  .section-period{margin-left:auto; font-size:.8rem; color:var(--ink-faint); white-space:nowrap; font-weight:500;}
+  .section-hint{margin-top:10px; font-size:.85rem; color:var(--ink-soft);}
+
+  .q{margin-top:26px; padding-top:22px; border-top:1px solid var(--line);}
+  .q:first-of-type{border-top:none; padding-top:16px;}
+  .qnum{display:inline-flex; font-weight:700; color:var(--primary-strong); font-family:"Noto Serif KR",serif; margin-right:6px;}
+  .qtext{font-size:1.0rem; font-weight:500;}
+  .subq{margin-top:16px; padding:14px 16px; border-left:3px solid var(--line-strong); background:var(--surface-2); border-radius:0 8px 8px 0;}
+  .subq .qnum{color:var(--ink-soft);}
+  .helpbox{margin-top:10px; font-size:.85rem; color:var(--ink-soft); background:var(--surface-2); border-radius:8px; padding:10px 13px;}
+  .helpbox p{margin:2px 0;}
+  .footnotes{margin-top:10px; font-size:.8rem; color:var(--ink-faint);}
+  .footnotes p{margin:3px 0;}
+
+  .table-wrap{overflow-x:auto; margin-top:12px; border:1px solid var(--line); border-radius:8px;}
+  table{border-collapse:collapse; width:100%; font-size:.86rem; font-variant-numeric:tabular-nums;}
+  table th, table td{border:1px solid var(--line); padding:7px 8px; text-align:center; white-space:nowrap;}
+  table th{background:var(--surface-2); font-weight:600; color:var(--ink-soft);}
+  table td.rowlabel{text-align:left; font-weight:600; background:var(--surface-2); color:var(--ink); white-space:normal;}
+  table td.groupcell{background:var(--surface-2); font-weight:600; white-space:nowrap;}
+  .cellnum{display:inline-flex; align-items:center; gap:3px;}
+  .cellnum input{width:4.6em; padding:5px 4px; text-align:right;}
+  .unit{color:var(--ink-faint); font-size:.82em;}
+  .cellradio{display:flex; gap:8px; justify-content:center;}
+  .cellradio label{display:inline-flex; align-items:center; gap:3px; cursor:pointer;}
+  .wide-text{width:100%; min-height:70px; font:inherit; padding:10px; border:1px solid var(--line-strong); border-radius:8px; background:var(--surface); color:var(--ink); resize:vertical;}
+
+  .hidden{display:none !important;}
+
+  .toolbar{
+    position:sticky; bottom:0; z-index:15; display:flex; gap:10px; justify-content:flex-end;
+    background:linear-gradient(180deg, transparent, var(--paper) 30%); padding-block:14px 6px; margin-top:10px;
+  }
+  button{font:inherit; cursor:pointer; border-radius:8px; border:1px solid var(--line-strong); background:var(--surface); color:var(--ink); padding:9px 16px; font-weight:600;}
+  button.primary{background:var(--primary); border-color:var(--primary); color:#fff;}
+  button.ghost{background:transparent;}
+  .savestate{font-size:.78rem; color:var(--ink-faint); align-self:center; margin-right:auto;}
+
+  footer{margin-top:40px; padding-top:18px; border-top:1px solid var(--line); font-size:.82rem; color:var(--ink-faint); text-align:center;}
+
+  @media (max-width:640px){
+    .section-period{display:block; margin-left:0; margin-top:4px;}
+    .section-head{flex-wrap:wrap;}
+    .toolbar{flex-wrap:wrap;}
+    .savestate{flex-basis:100%; margin-right:0; text-align:center;}
+    .toolbar button{flex:1 1 auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="설문 섹션 이동">
+  <div class="topbar-inner" id="navchips">
+    <a class="navchip" href="#respondent">응답자 정보</a>
+    <a class="navchip" href="#sec1">① 운영·예산</a>
+    <a class="navchip" href="#sec2">② 시설·설비</a>
+    <a class="navchip" href="#sec3">③ 인력·교육</a>
+    <a class="navchip" href="#sec4">④ 장서구성</a>
+    <a class="navchip" href="#sec5">⑤ 서비스제공</a>
+    <a class="navchip" href="#sec6">⑥ 대외협력</a>
+    <a class="navchip" href="#sec7">⑦ 기타</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">설문지 초안 · Review Draft</div>
+    <h1>2025년 대학도서관 장애인서비스 현황조사</h1>
+    <div class="subtitle">대학도서관 · 장애학생지원센터용</div>
+    <span class="draft-tag">● 검토용 초안 — 아직 배포되지 않았습니다</span>
+    <p class="lede">
+      본 조사는 국립장애인도서관이 매년 실시하는 「전국 도서관 장애인서비스 현황조사」의 문항 체계를
+      대학도서관 및 대학 내 장애학생지원센터 상황에 맞게 재구성한 것입니다. 문항의 내용과 구성은 원 설문과
+      동일하게 유지하고, 기관 유형을 나타내는 표현(예: 공공도서관 → 대학도서관/장애학생지원센터)만 조정했습니다.
+    </p>
+  </header>
+
+  <section class="card provenance">
+    <b>초안 안내</b> — 이 페이지는 웹 구현 형태를 미리 확인하고 공동연구진의 피드백을 받기 위한 초안입니다.
+    실제 조사 시행 전 아래 대괄호(<span class="fillfield">[ ]</span>) 항목과 문항 내용을 확정해 주시기 바랍니다.
+    입력한 내용은 서버로 전송되지 않으며, 이 브라우저에만 임시 저장됩니다.
+  </section>
+
+  <section class="card" aria-labelledby="overview-h">
+    <h2 id="overview-h" style="font-size:1.05rem;">조사 개요</h2>
+    <table class="meta-table">
+      <tr><td>조사 기간</td><td><span class="fillfield">[조사기간 입력]</span></td></tr>
+      <tr><td>조사 대상</td><td>전국 대학도서관 담당자, 대학 내 장애학생지원센터 담당자</td></tr>
+      <tr><td>주최 기관</td><td><span class="fillfield">[주최기관 입력]</span></td></tr>
+      <tr><td>주관/조사 기관</td><td><span class="fillfield">[주관·조사기관 입력]</span></td></tr>
+      <tr><td>문의처</td><td><span class="fillfield">[문의처 입력]</span></td></tr>
+    </table>
+    <ul class="notes">
+      <li>설문지 작성 기준은 <b>2024.01.01. ~ 2024.12.31.</b> 입니다.</li>
+      <li>문항의 입력 내용 중 해당 내역이 없는 경우 <b>“0”을 반드시 표시</b>해 주십시오.</li>
+      <li>문항 중 ‘누계’ 기준은 2024.12.31. 기준 누계를 작성해 주십시오.</li>
+      <li>장애인 편의시설, 독서보조기기, 대체자료에 관한 상세 설명은 별첨 설문응답 지침서 내 [보기카드]를 참고해 주시기 바랍니다.</li>
+      <li>이하 문항의 <b>‘귀 기관’</b>은 응답하시는 대학도서관 또는 장애학생지원센터를 의미합니다.</li>
+    </ul>
+  </section>
+
+  <!-- RESPONDENT -->
+  <section class="card respondent" id="respondent">
+    <h2 style="font-size:1.1rem;">◆ 응답자 인적 사항 ◆</h2>
+    <div class="branch-note">
+      대학도서관에 장애인서비스 업무를 전담하는 담당자가 없는 경우, 대학 내 <b>장애학생지원센터 담당자</b>께서
+      응답해 주시기 바랍니다.
+    </div>
+
+    <div class="field-row">
+      <div class="field" style="flex-basis:100%;">
+        <label class="req">담당 기관 구분</label>
+        <div class="choice-group" role="radiogroup" aria-label="담당 기관 구분">
+          <label class="choice"><input type="radio" name="respOrg" id="respOrg-lib" value="lib" required> 대학도서관 담당자</label>
+          <label class="choice"><input type="radio" name="respOrg" id="respOrg-center" value="center"> 장애학생지원센터 담당자</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label class="req" for="univName">대학명</label>
+        <input type="text" id="univName" placeholder="예: OO대학교" required>
+      </div>
+      <div class="field">
+        <label for="deptName">소속 부서명</label>
+        <input type="text" id="deptName" placeholder="예: 학술정보원 / 장애학생지원센터">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label class="req" for="respName">성명</label>
+        <input type="text" id="respName" required>
+      </div>
+      <div class="field small">
+        <label>성별</label>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="respGender" value="f"> 여</label>
+          <label class="choice"><input type="radio" name="respGender" value="m"> 남</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="respTitle">직책</label>
+        <input type="text" id="respTitle" placeholder="예: 사서, 주무관, 상담사 등">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field small">
+        <label class="req" for="tel1">전화번호</label>
+        <input type="tel" id="tel1" inputmode="numeric" maxlength="4" placeholder="000">
+      </div>
+      <div class="field small" style="align-self:flex-end;">
+        <input type="tel" id="tel2" inputmode="numeric" maxlength="4" placeholder="0000" aria-label="전화번호 중간자리">
+      </div>
+      <div class="field small" style="align-self:flex-end;">
+        <input type="tel" id="tel3" inputmode="numeric" maxlength="4" placeholder="0000" aria-label="전화번호 끝자리">
+      </div>
+    </div>
+    <p class="section-hint">※ 응답자 인적 사항은 본 조사에 실제 참여해 주셨는지 확인하기 위한 자료로만 활용되며, 조사 완료 후 폐기됩니다.</p>
+  </section>
+
+  <!-- SECTION 1 -->
+  <section class="section" id="sec1">
+    <div class="section-head">
+      <span class="section-num">①</span>
+      <span class="section-title">기관 운영 및 예산 현황</span>
+      <span class="section-period">2024년 1월 1일 ~ 12월 31일 기준</span>
+    </div>
+
+    <div class="card">
+      <div class="field-row">
+        <div class="field">
+          <label for="orgCode">고유번호 (해당 시 기재)</label>
+          <input type="text" id="orgCode">
+        </div>
+        <div class="field" style="flex-basis:100%;">
+          <label class="req">홈페이지 웹접근성 지침 준수 여부</label>
+          <div class="choice-group">
+            <label class="choice"><input type="radio" name="webAccess"> ① 준수</label>
+            <label class="choice"><input type="radio" name="webAccess"> ② 향후 적용 예정</label>
+          </div>
+        </div>
+      </div>
+      <div class="helpbox">
+        <p>◆ 홈페이지 웹 접근성 지침: 「지능정보화기본법」에 따라 장애인이나 고령자분들이 웹사이트에서 제공하는 정보를
+        비장애인과 동등하게 접근하고 이용할 수 있도록 보장하는 것으로, 한국형 웹콘텐츠 접근성 지침(KWCAG) 혹은
+        국제표준 웹 접근성 지침(WCAG) 준수에 대한 사항을 의미</p>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문1.</span> 귀 기관의 운영 계획에는 장애인서비스에 대한 내용이 포함되어 있습니까?</p>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="q1"> ① 있다</label>
+          <label class="choice"><input type="radio" name="q1"> ② 없다</label>
+        </div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문2.</span> 귀 기관에서는 장애인서비스 운영에 대한 매뉴얼이나 지침을 마련하고 있습니까?</p>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="q2"> ① 있다</label>
+          <label class="choice"><input type="radio" name="q2"> ② 없다</label>
+        </div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문3.</span> 귀 기관의 장애 유형별 등록회원 수, 이용자 수, 대출자 수를 기재해 주십시오. 해당 인원이 없는 경우 ‘0’을 기재해 주십시오.</p>
+        <div class="table-wrap"><table id="tbl-q3">
+          <thead>
+            <tr><th rowspan="2">구분</th><th colspan="2">등록회원 수<sup>1)</sup></th><th colspan="2">이용자 수<sup>2)</sup></th><th colspan="2">대출자 수<sup>3)</sup></th></tr>
+            <tr><th>2024년</th><th>누계</th><th>2024년</th><th>누계</th><th>2024년</th><th>누계</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table></div>
+        <div class="footnotes">
+          <p>1) 등록회원 수 : 2024년 란에는 2024.1.1.~12.31. 신규 등록한 회원 수를, 누계란에는 개관년도 이후 2024.12.31.까지의 누적 회원 수를 기입(중간에 기관명이 바뀐 경우 통계 집계 시작 이후부터의 누계)</p>
+          <p>2) 이용자 수 : 2024년 란에는 2024.1.1.~12.31. 방문한 이용자 수를, 누계란에는 누적 이용자 수를 기입(출입구 Counter 수로 산정하되, 정확한 산출이 어려운 경우 1주일을 정해 계산 후 x52주로 확대 측정)</p>
+          <p>3) 대출자 수 : 2024년 란에는 실제 대출자 수를, 누계란에는 누적 대출자 수를 기입(1년간 1회 이상 대출기록을 가진 이용자 기준)</p>
+        </div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문4.</span> 귀 기관의 2024년도 장애인서비스 관련 예산을 기재해 주십시오. 해당 내역이 없는 경우 ‘0’을 기재해 주십시오.</p>
+        <div class="table-wrap"><table id="tbl-q4">
+          <thead><tr><th>구분</th><th>금액(원)</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+        <div class="footnotes">
+          <p>4) 자체예산 : 귀 기관의 장애인서비스를 위한 기본 재정을 의미</p>
+          <p>5) 정부보조금 : 귀 기관이 장애인서비스를 위해 정부로부터 지원받은 보조금을 의미. 소속기관(교육청 등) 혹은 본관에서 전자자료를 일괄 구입하여 소속 기관 전체의 User수를 지정·서비스하는 경우, 소속기관 혹은 본관의 “전자자료 구입비 전체 예산”을 “기관 수”로 나누어 기입</p>
+        </div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문5.</span> 귀 기관이 2024년도에 장애인서비스 운영을 위해 지출한 예산을 기재해 주십시오. 해당 내역이 없는 경우 ‘0’을 기재해 주십시오. (최종 결산액 기준으로, 앞의 예산 내역과 일치하지 않아도 무방함)</p>
+        <div class="table-wrap"><table id="tbl-q5">
+          <thead><tr><th>구분</th><th>금액(원)</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section class="section" id="sec2">
+    <div class="section-head">
+      <span class="section-num">②</span>
+      <span class="section-title">시설 및 설비 환경</span>
+      <span class="section-period">2024년 12월 31일 기준</span>
+    </div>
+    <div class="card">
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문6.</span> 귀 기관에는 장애인 이용자를 위한 자료실이나 전용 공간(코너)을 운영하고 있습니까?</p>
+        <div class="choice-group" id="q6-group">
+          <label class="choice"><input type="radio" name="q6" value="room"> ① 장애인자료실을 운영하고 있다 (☞ 문6-1로)</label>
+          <label class="choice"><input type="radio" name="q6" value="corner"> ② 장애인 전용 공간(코너)을 운영하고 있다 (☞ 문6-1로)</label>
+          <label class="choice"><input type="radio" name="q6" value="none"> ③ 없다 (☞ 문7로)</label>
+        </div>
+
+        <div class="subq hidden" id="q6-1">
+          <p class="qtext"><span class="qnum">문6-1.</span> 귀 기관 장애인자료실(코너)의 명칭, 개실년도, 담당부서를 작성해 주십시오.</p>
+          <div class="field-row">
+            <div class="field"><label>자료실(코너)명</label><input type="text"></div>
+            <div class="field small"><label>개실년도</label><input type="number" inputmode="numeric" placeholder="예: 2015"></div>
+            <div class="field"><label>담당부서</label><input type="text"></div>
+          </div>
+        </div>
+
+        <div class="subq hidden" id="q6-2">
+          <p class="qtext"><span class="qnum">문6-2.</span> 귀 기관 장애인자료실(코너)의 면적, 이용좌석 수, 세부공간별 현황을 기재해 주십시오.</p>
+          <div class="helpbox"><p>◆ 장애인자료실이 독립 공간인 경우 해당 자료실 내용으로 기술하고, 일반 열람공간 내 장애인 공간(코너)이 있는 경우에는 이용 가능한 전체 면적의 추정치와 이용 가능 좌석 수를 기준으로 정리</p></div>
+          <div class="table-wrap"><table id="tbl-q6-2"><tbody></tbody></table></div>
+          <div class="footnotes">
+            <p>6) 대면낭독실 : 시각장애인을 위해 대면낭독이 가능한 별도의 공간을 의미</p>
+            <p>7) 대체자료 제작실 : 점자자료 및 녹음자료 등을 제작할 수 있는 별도의 공간</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문7.</span> 귀 기관의 장애인 편의시설 설치 유무를 기재해 주십시오. (설치기준은 「장애인·노인·임산부 등의 편의증진 보장에 관한 법률 시행령」 별표에 제시된 내용입니다.)</p>
+        <div class="helpbox"><p>◆ 장애인 편의시설에 대한 사항은 설문응답 지침서 내 [보기카드 1]의 내용을 참고해 주시기 바랍니다.</p></div>
+        <div class="table-wrap"><table id="tbl-q7">
+          <thead><tr><th>구분</th><th>항목</th><th>장애인등편의법 시행령상 설치 기준</th><th colspan="2">설치유무</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문8.</span> 귀 기관의 장애인 독서보조기기 보유 현황을 기재해 주십시오. 해당사항이 없는 경우에는 0으로 작성해 주시면 됩니다.</p>
+        <div class="helpbox"><p>◆ 장애인 독서보조기기에 대한 사항은 설문응답 지침서 내 [보기카드 2]의 내용을 참고해 주시기 바랍니다.</p></div>
+        <div class="table-wrap"><table id="tbl-q8"><tbody></tbody></table></div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문9.</span> 귀 기관에서는 독서보조기기 지원서비스를 어떻게 제공하고 있는지, 해당하는 항목을 모두 체크해 주세요.</p>
+        <div class="choice-group">
+          <label class="choice"><input type="checkbox"> ① 관내 기기 대여 및 이용</label>
+          <label class="choice"><input type="checkbox"> ② 관외 기기 대여</label>
+          <label class="choice"><input type="checkbox"> ③ 기기 사용법 안내 서비스</label>
+          <label class="choice"><input type="checkbox"> ④ 장애인복지관 등 관련기관에서 임대</label>
+        </div>
+        <div class="field" style="margin-top:8px;"><label>⑤ 기타</label><input type="text" placeholder="내용 기입"></div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문10.</span> 귀 기관에서는 직원(자원봉사자 포함)을 대상으로 ‘독서보조기기 사용 안내’에 대한 교육을 실시한 경험이 있습니까?</p>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="q10"> ① 있다</label>
+          <label class="choice"><input type="radio" name="q10"> ② 없다</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section class="section" id="sec3">
+    <div class="section-head">
+      <span class="section-num">③</span>
+      <span class="section-title">인력 및 교육</span>
+      <span class="section-period">2024년 1월 1일 ~ 12월 31일 기준</span>
+    </div>
+    <div class="card">
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문11.</span> 귀 기관에는 장애인 서비스를 전담하는 직원이 있습니까?</p>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="q11" value="yes"> ① 있다 (☞ 문11-2로)</label>
+          <label class="choice"><input type="radio" name="q11" value="no"> ② 없다 (☞ 문11-1로)</label>
+        </div>
+
+        <div class="subq hidden" id="q11-1">
+          <p class="qtext"><span class="qnum">문11-1.</span> 장애인 서비스 전담 직원은 없지만, 관련 업무를 담당하는 직원이 있습니까?</p>
+          <div class="choice-group">
+            <label class="choice"><input type="radio" name="q11-1" value="yes"> ① 있다 (☞ 문11-2로)</label>
+            <label class="choice"><input type="radio" name="q11-1" value="no"> ② 없다 (☞ 문12로)</label>
+          </div>
+        </div>
+
+        <div class="subq hidden" id="q11-2">
+          <p class="qtext"><span class="qnum">문11-2.</span> 귀 기관의 장애인 서비스 전담 혹은 담당 직원 현황을 기재해 주십시오. (해당 인원이 없는 경우 ‘0’을 기재)</p>
+          <div class="table-wrap"><table id="tbl-q11-2"><tbody></tbody></table></div>
+        </div>
+
+        <div class="subq hidden" id="q11-3">
+          <p class="qtext"><span class="qnum">문11-3.</span> 귀 기관의 장애인 서비스 전담 혹은 담당 직원의 자격증 총 보유현황을 기재해 주십시오. (여러 자격증을 동시 보유하는 경우 해당 항목을 모두 집계, 해당 인원이 없는 경우 ‘0’을 기재)</p>
+          <div class="table-wrap"><table id="tbl-q11-3"><tbody></tbody></table></div>
+          <div class="footnotes">
+            <p>8) 농통역사 : 청각장애인으로 비장애인과 청각장애인과의 의사소통 담당</p>
+            <p>9) 보조공학사 : 장애인의 원활한 생활을 지원하기 위한 보조공학 기기와 관련 서비스 담당</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문12.</span> 귀 기관에는 장애인 이용자를 위한 자원봉사자(사회적 일자리 포함)가 있습니까?</p>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="q12" value="yes"> ① 있다 (☞ 문12-1로)</label>
+          <label class="choice"><input type="radio" name="q12" value="no"> ② 없다 (☞ 문13으로)</label>
+        </div>
+
+        <div class="subq hidden" id="q12-1">
+          <p class="qtext"><span class="qnum">문12-1.</span> 귀 기관에서 활동하는 장애인 이용자를 위한 자원봉사자는 몇 명이며, 2024년 기준 자원봉사활동 횟수는 몇 회입니까?</p>
+          <div class="field-row">
+            <div class="field"><label>자원봉사자</label><span class="cellnum"><input type="number" min="0"><span class="unit">명</span></span></div>
+            <div class="field"><label>2024년 자원봉사활동 누적 횟수</label><span class="cellnum"><input type="number" min="0"><span class="unit">회</span></span></div>
+          </div>
+          <div class="helpbox"><p>◆ 자원봉사활동 횟수는 장애인서비스에 관한 내용으로 한정하며, 1일 1회로 집계</p></div>
+        </div>
+
+        <div class="subq hidden" id="q12-2">
+          <p class="qtext"><span class="qnum">문12-2.</span> 귀 기관에서 장애인 이용자를 위하여 활동하는 자원봉사자(사회적 일자리 포함)는 주로 어떤 서비스 분야에서 활동하고 계십니까?</p>
+          <div class="choice-group">
+            <label class="choice"><input type="checkbox"> ① 자료대출 서비스(방문대출, 우편대출, 택배서비스 등)</label>
+            <label class="choice"><input type="checkbox"> ② 자료제작 서비스(점역, 교정, 녹음 등)</label>
+            <label class="choice"><input type="checkbox"> ③ 정보이용 서비스(대면낭독, 정보검색 지원, 보조기기 이용지원 등)</label>
+            <label class="choice"><input type="checkbox"> ④ 의사소통 서비스(대필, 통역, 의사소통 지원)</label>
+            <label class="choice"><input type="checkbox"> ⑤ 독서·문화 프로그램 운영지원</label>
+          </div>
+          <div class="field" style="margin-top:8px;"><label>⑥ 기타</label><input type="text" placeholder="내용 기입"></div>
+        </div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문13.</span> 귀 기관에서는 2024년에 국립중앙도서관 및 국립장애인도서관에서 진행한 장애인서비스 관련 교육(사서교육훈련, 워크숍, 세미나 등)에 참여한 경험이 있으십니까?</p>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="q13" value="yes"> ① 있다 (☞ 문13-1로)</label>
+          <label class="choice"><input type="radio" name="q13" value="no"> ② 없다 (☞ 문14로)</label>
+        </div>
+        <div class="subq hidden" id="q13-1">
+          <p class="qtext"><span class="qnum">문13-1.</span> 참여한 횟수와 참가직원수를 기재해 주십시오.</p>
+          <div class="field-row">
+            <div class="field"><label>총 횟수</label><span class="cellnum"><input type="number" min="0"><span class="unit">회</span></span></div>
+            <div class="field"><label>총 참가직원수</label><span class="cellnum"><input type="number" min="0"><span class="unit">명</span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문14.</span> 귀 기관에서는 장애인 서비스를 효율적으로 제공하기 위해 2024년에 직원(자원봉사자 포함)을 대상으로 자체적으로 교육을 실시한 경험이 있습니까?</p>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="q14" value="yes"> ① 있다 (☞ 문14-1로)</label>
+          <label class="choice"><input type="radio" name="q14" value="no"> ② 없다 (☞ 문15로)</label>
+        </div>
+        <div class="subq hidden" id="q14-1">
+          <p class="qtext"><span class="qnum">문14-1.</span> 실시한 교육의 횟수와 참가자 수를 기재해 주십시오.</p>
+          <div class="field-row">
+            <div class="field"><label>총 횟수</label><span class="cellnum"><input type="number" min="0"><span class="unit">회</span></span></div>
+            <div class="field"><label>총 참가자수</label><span class="cellnum"><input type="number" min="0"><span class="unit">명</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section class="section" id="sec4">
+    <div class="section-head">
+      <span class="section-num">④</span>
+      <span class="section-title">장서(자료) 구성</span>
+      <span class="section-period">2024년 1월 1일 ~ 12월 31일 기준</span>
+    </div>
+    <p class="section-hint">※ 장애학생지원센터에서 별도의 장서(자료)를 소장·관리하지 않는 경우, 아래 문항은 해당사항 없음(0)으로 기재해 주시기 바랍니다.</p>
+    <div class="card">
+      <div class="q">
+        <p class="qtext"><span class="qnum">문15.</span> 귀 기관에서는 장서개발지침이나 자료수집 기준(지침)에 장애인 자료에 대한 내용을 포함하고 있습니까?</p>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="q15"> ① 있다</label>
+          <label class="choice"><input type="radio" name="q15"> ② 없다</label>
+        </div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문16.</span> 귀 기관에서 2024년 한 해 동안 수집한 장애 유형별 대체자료 수와 장애인 대체자료별 총 소장 현황 및 이용현황을 기재해 주십시오. 표의 분류에 따라 종(권) 수를 기재하고 해당 자료가 없는 경우 ‘0’을 기재해 주십시오.</p>
+        <div class="helpbox">
+          <p>◆ 구입, 기증, 제작 모두 2024년란에는 2024.1.1.~12.31.의 대체자료 현황을 기입하고, 총 소장자료 란에는 2024.12.31. 기준 누적 대체자료 수를 기입(제작의 경우 외부기관 위탁사업에 의한 제작은 제외)</p>
+          <p>◆ ‘종’은 자료유형별 종류 수, ‘권(점)’은 실제 물리적 개수를 의미. 예) 점자도서 1종을 2권, 3권씩 복본 보유 시 전체 집계는 2종 5권</p>
+          <p>◆ 장애인 대체자료에 대한 사항은 설문응답 지침서 내 [보기카드 3]의 내용을 참고해 주시기 바랍니다.</p>
+        </div>
+        <div class="table-wrap"><table id="tbl-q16"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section class="section" id="sec5">
+    <div class="section-head">
+      <span class="section-num">⑤</span>
+      <span class="section-title">관련 서비스 제공</span>
+      <span class="section-period">2024년 1월 1일 ~ 12월 31일 기준</span>
+    </div>
+    <div class="card">
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문17.</span> 귀 기관의 장애인이용자 대상 자료대출서비스 현황을 기재해 주십시오. 해당사항이 없는 경우에는 0으로 작성해 주시면 됩니다.</p>
+        <div class="table-wrap"><table id="tbl-q17">
+          <thead><tr><th>구분</th><th colspan="2">서비스 제공 여부</th><th>이용자 수</th><th>이용 건수</th><th>대출 권수</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+        <div class="footnotes">
+          <p>10) 관외대출 : 장애인이 기관을 직접 내방하여 자료를 빌린 경우</p>
+          <p>11) 책나래서비스 : 장애인이 필요로 하는 자료를 우체국 택배를 이용해 무료로 집까지 제공하는 서비스</p>
+          <p>12) 우편·택배 서비스 : 책나래서비스 외 해당 기관에서 자체적으로 시행하는 우편·택배서비스</p>
+          <p>13) 상호대차서비스 : 협약을 맺은 다른 도서관(장애인도서관, 타 지역 도서관 등)에 장애인 대체자료를 신청해 소장 자료를 서로 이용한 경우</p>
+          <p>14) 방문대출 : 직원(자원봉사자 등)이 직접 장애인 가정을 방문하여 자료를 빌려 준 경우</p>
+          <p>15) 이동도서관 : 접근성이 떨어지는 지역을 중심으로 자료를 대출·반납하여 주는 서비스</p>
+          <p>16) 기타 : 상기 서비스 외 자체적으로 운영하는 자료대출 서비스명 기입</p>
+        </div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문18.</span> 귀 기관의 장애인이용자 대상 서비스 현황을 기재해 주십시오. 해당사항이 없는 경우에는 0으로 작성해 주시면 됩니다.</p>
+        <div class="table-wrap"><table id="tbl-q18">
+          <thead><tr><th>구분</th><th colspan="2">서비스 제공 여부</th><th>이용자 수</th><th>이용 건수</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+        <div class="footnotes">
+          <p>19) 대면낭독 : 책 읽기가 불편한 장애인을 대상으로 장서를 낭독해주는 서비스</p>
+          <p>20) 녹음자료 제작·제공 : 시각장애인을 위해 도서를 낭독하여 CD, DVD, TTS 등으로 제작 또는 제공</p>
+          <p>21) 점역자료 제작·제공 : 시각장애인을 위해 신간도서를 점자형태로 번역 제작·제공</p>
+          <p>22) 입력자료(텍스트파일) 음성변환 프로그램 : 컴퓨터가 텍스트파일을 음성으로 변환해 읽어주는 서비스</p>
+          <p>23) 한국수어 대면낭독 : 청각장애인을 대상으로 한국수어통역사가 한국수어로 낭독·부연 설명하는 서비스</p>
+        </div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문19.</span> 귀 기관에서는 2024년 한 해 동안 장애인을 대상으로 교육 및 독서문화프로그램을 운영한 경험이 있습니까?</p>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="q19" value="yes"> ① 있다 (☞ 문19-1로)</label>
+          <label class="choice"><input type="radio" name="q19" value="no"> ② 없다 (☞ 문20으로)</label>
+        </div>
+        <div class="subq hidden" id="q19-1">
+          <p class="qtext"><span class="qnum">문19-1.</span> 2024년에 장애인을 대상으로 운영한 교육 및 독서문화프로그램 횟수와 참가자 수를 기재해 주십시오.</p>
+          <div class="helpbox">
+            <p>◆ 장애유형 구분 없이 ‘장애인’으로만 되어 있거나 구체적 유형 구분이 어려운 경우 ‘기타 유형 장애’에 기입</p>
+            <p>◆ 횟수는 기간에 상관없이 1회로 보며, 참가자 수는 매회 참가자(참석자)를 누적으로 기입. 해당 경험이 없는 경우 ‘0’을 기재</p>
+          </div>
+          <div class="table-wrap"><table id="tbl-q19-1"></table></div>
+          <div class="footnotes">
+            <p>24) 도서관 이용 교육 : 견학, 오리엔테이션, 이용 안내 교육 등</p>
+            <p>25) 정보 활용 교육 : 정보검색, 정보원 소개, 정보표현, 인용 및 표절 등 정보 이용 방법 교육</p>
+            <p>26) 문화 프로그램 : 전시회, 강연회, 대회 등 도서관·독서 관련 프로그램을 제외한 모든 프로그램</p>
+            <p>27) 독서 관련 프로그램 : 서비스와 직접 관련되는 도서, 독서지도, 정보 관련 강좌·행사·세미나 등</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문20.</span> 귀 기관에서는 2024년 한 해 동안 비장애인을 대상으로 장애인 인식 개선 교육이나 프로그램을 실시한 경험이 있습니까?</p>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="q20" value="yes"> ① 있다 (☞ 문20-1로)</label>
+          <label class="choice"><input type="radio" name="q20" value="no"> ② 없다 (☞ 문21로)</label>
+        </div>
+        <div class="subq hidden" id="q20-1">
+          <p class="qtext"><span class="qnum">문20-1.</span> 실시 횟수와 참가자 수를 기재해 주십시오.</p>
+          <div class="field-row">
+            <div class="field"><label>총 횟수</label><span class="cellnum"><input type="number" min="0"><span class="unit">회</span></span></div>
+            <div class="field"><label>총 참가자수</label><span class="cellnum"><input type="number" min="0"><span class="unit">명</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6 -->
+  <section class="section" id="sec6">
+    <div class="section-head">
+      <span class="section-num">⑥</span>
+      <span class="section-title">대외 협력</span>
+      <span class="section-period">2024년 1월 1일 ~ 12월 31일 기준</span>
+    </div>
+    <div class="card">
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문21.</span> 귀 기관에서는 2024년에 장애인서비스에 대한 홍보를 진행한 경험이 있습니까?</p>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="q21" value="yes"> ① 있다 (☞ 문21-1로)</label>
+          <label class="choice"><input type="radio" name="q21" value="no"> ② 없다 (☞ 문22로)</label>
+        </div>
+        <div class="subq hidden" id="q21-1">
+          <p class="qtext"><span class="qnum">문21-1.</span> 장애인서비스 홍보를 한 경우, 어떤 방법으로 홍보가 진행되었습니까? (해당 항목에 모두 응답)</p>
+          <div class="choice-group">
+            <label class="choice"><input type="checkbox"> ① 관내 이용 안내</label>
+            <label class="choice"><input type="checkbox"> ② 온·오프라인 소식지</label>
+            <label class="choice"><input type="checkbox"> ③ 팸플릿 등 홍보자료</label>
+            <label class="choice"><input type="checkbox"> ④ 기관 홈페이지</label>
+            <label class="choice"><input type="checkbox"> ⑤ 기관 소셜미디어</label>
+            <label class="choice"><input type="checkbox"> ⑥ 보도자료 배포 등 언론 홍보</label>
+          </div>
+          <div class="field" style="margin-top:8px;"><label>⑦ 기타</label><input type="text" placeholder="내용 기입"></div>
+        </div>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">문22.</span> 귀 기관에서는 2024년에 유관기관과 연계(외부협력)하여 장애인서비스 및 관련 사업을 운영한 경험이 있습니까?</p>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="q22" value="yes"> ① 있다 (☞ 문22-1로)</label>
+          <label class="choice"><input type="radio" name="q22" value="no"> ② 없다 (☞ 문23으로)</label>
+        </div>
+
+        <div class="subq hidden" id="q22-1">
+          <p class="qtext"><span class="qnum">문22-1.</span> 2024년에 협업한 기관 수는 대략 몇 개 기관입니까?</p>
+          <span class="cellnum"><input type="number" min="0"><span class="unit">개</span></span>
+        </div>
+
+        <div class="subq hidden" id="q22-2">
+          <p class="qtext"><span class="qnum">문22-2.</span> 2024년에 협업한 기관은 어떤 유형의 기관입니까? (해당 항목에 모두 응답)</p>
+          <div class="choice-group">
+            <label class="choice"><input type="checkbox"> ① 공공도서관</label>
+            <label class="choice"><input type="checkbox"> ② 국립도서관</label>
+            <label class="choice"><input type="checkbox"> ③ 장애인도서관</label>
+            <label class="choice"><input type="checkbox"> ④ 장애인복지관 및 단체</label>
+            <label class="choice"><input type="checkbox"> ⑤ 특수학교(학급)</label>
+            <label class="choice"><input type="checkbox"> ⑥ 타 대학 장애학생지원센터·대학도서관</label>
+          </div>
+          <div class="field" style="margin-top:8px;"><label>⑦ 기타</label><input type="text" placeholder="내용 기입"></div>
+        </div>
+
+        <div class="subq hidden" id="q22-3">
+          <p class="qtext"><span class="qnum">문22-3.</span> 2024년에 협업한 서비스 및 사업 내용은 무엇입니까? (해당 항목에 모두 응답)</p>
+          <div class="choice-group">
+            <label class="choice"><input type="checkbox"> ① 대체자료 제작 및 보급</label>
+            <label class="choice"><input type="checkbox"> ② 독서문화프로그램 운영</label>
+            <label class="choice"><input type="checkbox"> ③ 장애인 관련 교육 운영</label>
+            <label class="choice"><input type="checkbox"> ④ 독서보조기기 등 각종 장비 지원</label>
+          </div>
+          <div class="field" style="margin-top:8px;"><label>⑤ 기타</label><input type="text" placeholder="내용 기입"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7 -->
+  <section class="section" id="sec7">
+    <div class="section-head">
+      <span class="section-num">⑦</span>
+      <span class="section-title">기타</span>
+      <span class="section-period">2024년 1월 1일 ~ 12월 31일 기준</span>
+    </div>
+    <div class="card">
+      <div class="q" style="border-top:none; padding-top:0;">
+        <p class="qtext"><span class="qnum">문23.</span> 추가로 대학도서관·장애학생지원센터의 장애인서비스 발전을 위해 의견이 있으시면 자유롭게 기술해 주세요.</p>
+        <textarea class="wide-text" rows="4"></textarea>
+      </div>
+
+      <div class="q">
+        <p class="qtext"><span class="qnum">P1.</span> 마지막으로 본 설문조사 일괄 종료 후 감사의 의미로 추첨을 통해 답례를 제공할 예정입니다. 이에 전달/연락 받으실 귀하의 핸드폰 번호를 수집하고자 합니다. 귀하의 개인정보는 경품발송 및 중복 수령방지 등을 위한 목적으로만 사용되며 다른 용도로 사용되지 않고 파기할 것입니다. 개인정보의 제3자 제공에 대한 동의 여부는 어떻게 되십니까? (동의하지 않음을 선택하여도 설문결과는 통계자료 및 평가 지표로 활용됩니다.)</p>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="p1" value="yes"> ① 취급위탁에 동의합니다.</label>
+          <label class="choice"><input type="radio" name="p1" value="no"> ② 취급위탁에 동의하지 않습니다. (경품지급불가)</label>
+        </div>
+        <div class="subq hidden" id="p2">
+          <p class="qtext"><span class="qnum">P2.</span> (P1의 ① 응답자만) 귀하의 핸드폰 번호는 어떻게 되십니까? (‘-’를 제외하고 숫자로만 입력)</p>
+          <input type="tel" inputmode="numeric" style="max-width:220px;" placeholder="01000000000">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="toolbar">
+    <span class="savestate" id="savestate">임시 저장 대기 중…</span>
+    <button class="ghost" id="btnReset" type="button">입력 초기화</button>
+    <button class="primary" id="btnSave" type="button">브라우저에 임시 저장</button>
+  </div>
+
+  <footer>
+    ♥ 초안 검토에 참여해 주셔서 감사합니다 ♥ &nbsp;·&nbsp; 이 페이지는 실제 데이터를 수집하지 않는 검토용 목업입니다.
+  </footer>
+</div>
+
+<script>
+(function(){
+  // ---------- helpers to build repetitive tables ----------
+  function el(tag, attrs, html){
+    const n = document.createElement(tag);
+    if(attrs) for(const k in attrs) n.setAttribute(k, attrs[k]);
+    if(html !== undefined) n.innerHTML = html;
+    return n;
+  }
+  function slug(s){ return String(s).replace(/[^a-zA-Z0-9가-힣]+/g,'-'); }
+  function numCell(unit, idBase){
+    const id = slug(idBase);
+    return `<span class="cellnum"><input type="number" min="0" id="${id}" aria-label="${unit}"><span class="unit">${unit}</span></span>`;
+  }
+  function radioCell(name, idBase){
+    const n = slug(name), id = slug(idBase);
+    return `<div class="cellradio">
+      <label><input type="radio" name="${n}" value="yes" id="${id}-y"> 있다</label>
+      <label><input type="radio" name="${n}" value="no" id="${id}-n"> 없다</label>
+    </div>`;
+  }
+
+  // 문3
+  (function(){
+    const rows = ['시각장애','청각장애','지체·뇌병변장애','발달장애','기타 유형 장애','계'];
+    const tb = document.querySelector('#tbl-q3 tbody');
+    rows.forEach((r,i)=>{
+      const tr = el('tr');
+      tr.appendChild(el('td',{class:'rowlabel'}, r));
+      for(let c=0;c<6;c++){ tr.appendChild(el('td',null, numCell('명', `q3-${i}-${c}`))); }
+      tb.appendChild(tr);
+    });
+  })();
+
+  // 문4
+  (function(){
+    const groups = [
+      ['자체예산', ['자체 재원','후원금','기타(회비 등)']],
+      ['정부보조금', ['문화체육관광부','보건복지부','기타 정부부처(교육부 등)','지자체']],
+    ];
+    const tb = document.querySelector('#tbl-q4 tbody');
+    groups.forEach(([g, items])=>{
+      items.forEach((it,i)=>{
+        const tr = el('tr');
+        if(i===0) tr.appendChild(el('td',{class:'groupcell',rowspan:items.length}, g));
+        tr.appendChild(el('td',{class:'rowlabel'}, it));
+        tr.appendChild(el('td', null, numCell('원', 'q4-'+g+i)));
+        tb.appendChild(tr);
+      });
+    });
+    const totalTr = el('tr');
+    totalTr.appendChild(el('td',{class:'rowlabel',colspan:2},'계'));
+    totalTr.appendChild(el('td', null, numCell('원','q4-total')));
+    tb.appendChild(totalTr);
+  })();
+
+  // 문5
+  (function(){
+    const rows = ['인건비','자료구입','자료제작','프로그램 운영비','보조기기 구입/유지','편의시설 보완/확충','기타'];
+    const tb = document.querySelector('#tbl-q5 tbody');
+    rows.forEach((r,i)=>{
+      const tr = el('tr');
+      tr.appendChild(el('td',{class:'rowlabel'}, r));
+      tr.appendChild(el('td',null, numCell('원','q5-'+i)));
+      tb.appendChild(tr);
+    });
+    const totalTr = el('tr');
+    totalTr.appendChild(el('td',{class:'rowlabel'},'계'));
+    totalTr.appendChild(el('td',null, numCell('원','q5-total')));
+    tb.appendChild(totalTr);
+  })();
+
+  // 문6-2
+  (function(){
+    const tb = document.querySelector('#tbl-q6-2 tbody');
+    const basic = [
+      ['면적 및 위치, 총 좌석 수','자료실(코너) 총 면적','㎡'],
+      ['','설치 위치','층'],
+      ['','총 이용좌석 수','석'],
+    ];
+    basic.forEach((r,i)=>{
+      const tr = el('tr');
+      if(i===0) tr.appendChild(el('td',{class:'groupcell',rowspan:3}, r[0]));
+      tr.appendChild(el('td',{class:'rowlabel'}, r[1]));
+      tr.appendChild(el('td',null, numCell(r[2], 'q62-b'+i)));
+      tb.appendChild(tr);
+    });
+    const spaces = ['안내데스크','대면낭독실','영상실(멀티미디어실)','정보검색실(정보검색대)','열람실(열람석)','대체자료 제작실'];
+    spaces.forEach((s,i)=>{
+      const tr = el('tr');
+      if(i===0) tr.appendChild(el('td',{class:'groupcell',rowspan:spaces.length+1}, '세부공간 및 설비 등 구성 여부'));
+      tr.appendChild(el('td',{class:'rowlabel'}, s));
+      tr.appendChild(el('td',null, radioCell('q62-'+i,'q62-'+i)));
+      tb.appendChild(tr);
+    });
+    const trEtc = el('tr');
+    trEtc.appendChild(el('td',{class:'rowlabel'}, '기타 <input type="text" placeholder="직접기입" style="width:8em;margin-left:4px;">'));
+    trEtc.appendChild(el('td',null, radioCell('q62-etc','q62-etc')));
+    tb.appendChild(trEtc);
+  })();
+
+  // 문7
+  (function(){
+    const data = [
+      ['매개시설', 'ㅤ', [
+        ['주출입구 접근로','장애인의 통행이 가능한 접근로','의무'],
+        ['장애인 전용주차구역','장애인 전용주차구역','의무'],
+        ['주출입구 높이 차이 제거','높이 차이가 제거된 건축물 출입구','의무'],
+      ]],
+      ['내부시설','', [
+        ['출입구(문)','장애인의 출입이 가능한 출입구(문)','의무'],
+        ['복도','장애인의 통행이 가능한 복도','의무'],
+        ['계단 또는 승강기','장애인용 승강기 / 장애인의 통행이 가능한 계단','의무'],
+      ]],
+      ['위생시설','', [
+        ['대변기','장애인용 대변기','의무'],
+        ['소변기','장애인용 소변기','권장'],
+        ['세면대','장애인용 세면대','권장'],
+      ]],
+      ['안내시설','', [
+        ['점자블록','접근로 점자블록','의무'],
+        ['유도 및 안내설비','장애인용 안내판 / 음성안내장치','권장'],
+        ['경보 및 피난설비','경보피난설비 / 시각경보시스템','의무'],
+      ]],
+      ['기타시설','', [
+        ['접수대/작업대','장애인의 이용이 가능한 접수대 또는 작업대','의무'],
+      ]],
+    ];
+    const tb = document.querySelector('#tbl-q7 tbody');
+    let idx=0;
+    data.forEach(([group,_,items])=>{
+      items.forEach((it,i)=>{
+        const tr = el('tr');
+        if(i===0) tr.appendChild(el('td',{class:'groupcell',rowspan:items.length}, group));
+        tr.appendChild(el('td',{class:'rowlabel'}, it[0]+' <br><span style="font-weight:400;color:var(--ink-faint);font-size:.85em;">'+it[1]+'</span>'));
+        tr.appendChild(el('td', null, it[2]));
+        tr.appendChild(el('td', null, radioCell('q7-'+idx,'q7-'+idx)));
+        tb.appendChild(tr);
+        idx++;
+      });
+    });
+  })();
+
+  // 문8
+  (function(){
+    const tb = document.querySelector('#tbl-q8 tbody');
+    const groups = [
+      ['시각장애', ['확대경','휴대용 독서확대기','이동용 독서확대기','탁상용 독서확대기','데이지 플레이어','음성바코드 리더기','점자정보 단말기','화면낭독 S/W','화면확대 S/W','점역 S/W','문서인식 S/W 및 H/W','점자프린터','점자라벨 프린터']],
+      ['청각/언어장애', ['소리증폭장치(보청기)','신호,경보장치','강의,강연 청취기','화상전화기','골도전화기(헤드셋)','보완대체 의사소통기기(ACC)']],
+      ['지체/지적/뇌병변장애', ['특수마우스','특수키보드','자세보조장치','휠체어용 작업테이블','모니터 이동보조기','원고 홀더','터치스크린','경사각 작업테이블','필기구 홀더','높낮이 조절책상','컴퓨터 입력 S/W','스위치','입력보조장치']],
+    ];
+    groups.forEach(([g, items])=>{
+      items.forEach((it,i)=>{
+        const tr = el('tr');
+        if(i===0) tr.appendChild(el('td',{class:'groupcell',rowspan:items.length}, g));
+        tr.appendChild(el('td',{class:'rowlabel'}, it));
+        tr.appendChild(el('td',null, numCell('개','q8-'+g+i)));
+        tb.appendChild(tr);
+      });
+    });
+    const trEtc = el('tr');
+    trEtc.appendChild(el('td',{class:'rowlabel'},'기타'));
+    trEtc.appendChild(el('td',null,'<input type="text" placeholder="직접기입" style="width:100%;">'));
+    trEtc.appendChild(el('td',null, numCell('개','q8-etc')));
+    tb.appendChild(trEtc);
+  })();
+
+  // 문16 (large matrix)
+  (function(){
+    const table = document.getElementById('tbl-q16');
+    const thead = el('thead');
+    thead.innerHTML = `
+      <tr>
+        <th colspan="2" rowspan="3">구분</th>
+        <th colspan="8">1. 소장현황</th>
+        <th rowspan="3">2. 이용현황<br>대출현황<br>(권/점)</th>
+      </tr>
+      <tr>
+        <th colspan="4">2024년</th>
+        <th colspan="4">소장 자료</th>
+      </tr>
+      <tr>
+        <th>구입</th><th>기증</th><th>자체제작</th><th>계</th>
+        <th>구입</th><th>기증</th><th>자체제작</th><th>계</th>
+      </tr>`;
+    table.appendChild(thead);
+    const tb = el('tbody');
+    const groups = [
+      ['시각자료',[
+        ['점자',['점자도서','묵점자 혼용도서','점자라벨도서','전자점자파일']],
+        ['영상',['화면해설영상자료']],
+        ['음성',['CD-ROM, DVD 녹음자료','MP3 녹음파일','데이지(DAISY) 자료']],
+      ]],
+      ['청각자료',[
+        ['',['한국수어&자막영상자료','한국수어영상자료','자막영상자료']],
+      ]],
+      ['기타자료',[
+        ['',['촉각도서','큰글자도서','읽기쉬운도서']],
+      ]],
+    ];
+    groups.forEach(([macro, subs])=>{
+      let macroRows = subs.reduce((s,x)=>s+x[1].length,0);
+      let macroPrinted=false;
+      subs.forEach(([sub, items])=>{
+        items.forEach((it,i)=>{
+          const tr = el('tr');
+          if(!macroPrinted){ tr.appendChild(el('td',{class:'groupcell',rowspan:macroRows}, macro)); macroPrinted=true; }
+          if(sub && i===0){ tr.appendChild(el('td',{class:'groupcell',rowspan:items.length}, sub)); }
+          else if(!sub && i===0){ tr.appendChild(el('td',{class:'groupcell',rowspan:items.length}, '')); }
+          tr.appendChild(el('td',{class:'rowlabel'}, it));
+          for(let c=0;c<8;c++){ tr.appendChild(el('td',null, numCell(c%2===0?'종':'권(점)', 'q16-'+macro+sub+it+c))); }
+          tr.appendChild(el('td',null, numCell('권(점)','q16-use-'+macro+sub+it)));
+          tb.appendChild(tr);
+        });
+      });
+    });
+    // 기입 (custom) row
+    const trFree = el('tr');
+    trFree.appendChild(el('td',{class:'groupcell'}, '기타자료'));
+    trFree.appendChild(el('td',{class:'groupcell'}, ''));
+    trFree.appendChild(el('td',{class:'rowlabel'}, '기입 : <input type="text" style="width:6em;">'));
+    for(let c=0;c<8;c++){ trFree.appendChild(el('td',null, numCell(c%2===0?'종':'권(점)', 'q16-free-'+c))); }
+    trFree.appendChild(el('td',null, numCell('권(점)','q16-use-free')));
+    tb.appendChild(trFree);
+    // total row
+    const trTotal = el('tr');
+    trTotal.appendChild(el('td',{class:'rowlabel',colspan:2},'계'));
+    for(let c=0;c<8;c++){ trTotal.appendChild(el('td',null, numCell(c%2===0?'종':'권(점)', 'q16-total-'+c))); }
+    trTotal.appendChild(el('td',null, numCell('권(점)','q16-use-total')));
+    tb.appendChild(trTotal);
+    table.appendChild(tb);
+  })();
+
+  // 문17
+  (function(){
+    const rows = [
+      ['관외대출','10'],['책나래서비스','11'],['우편·택배서비스(책나래서비스 외)','12'],
+      ['상호대차서비스','13'],['방문대출','14'],['이동도서관','15'],
+    ];
+    const tb = document.querySelector('#tbl-q17 tbody');
+    rows.forEach(([label,fn],i)=>{
+      const tr = el('tr');
+      tr.appendChild(el('td',{class:'rowlabel'}, `${label}<sup>${fn})</sup>`));
+      tr.appendChild(el('td',{colspan:'2'}, radioCell('q17-'+i,'q17-'+i)));
+      tr.appendChild(el('td',null, numCell('명','q17-u-'+i)));
+      tr.appendChild(el('td',null, numCell('건','q17-c-'+i)));
+      tr.appendChild(el('td',null, numCell('권','q17-v-'+i)));
+      tb.appendChild(tr);
+    });
+    const trEtc = el('tr');
+    trEtc.appendChild(el('td',{class:'rowlabel'}, '기타<sup>16)</sup> (기입 : <input type="text" style="width:7em;">)'));
+    trEtc.appendChild(el('td',{colspan:'2'}, radioCell('q17-etc','q17-etc')));
+    trEtc.appendChild(el('td',null, numCell('명','q17-u-etc')));
+    trEtc.appendChild(el('td',null, numCell('건','q17-c-etc')));
+    trEtc.appendChild(el('td',null, numCell('권','q17-v-etc')));
+    tb.appendChild(trEtc);
+  })();
+
+  // 문18
+  (function(){
+    const rows = [
+      ['대면낭독','19'],['정보검색',''],['녹음자료 제작·제공','20'],['점역자료 제작·제공','21'],
+      ['입력자료(텍스트파일) 음성변환 프로그램','22'],['한국수어 대면낭독','23'],['자막지원',''],
+      ['독서보조기기 사용 안내',''],['정보화기기(컴퓨터, 스마트폰, 태블릿 기기 등) 사용 안내',''],
+    ];
+    const tb = document.querySelector('#tbl-q18 tbody');
+    rows.forEach(([label,fn],i)=>{
+      const tr = el('tr');
+      tr.appendChild(el('td',{class:'rowlabel'}, fn?`${label}<sup>${fn})</sup>`:label));
+      tr.appendChild(el('td',{colspan:'2'}, radioCell('q18-'+i,'q18-'+i)));
+      tr.appendChild(el('td',null, numCell('명','q18-u-'+i)));
+      tr.appendChild(el('td',null, numCell('건','q18-c-'+i)));
+      tb.appendChild(tr);
+    });
+    const trEtc = el('tr');
+    trEtc.appendChild(el('td',{class:'rowlabel'}, '기타 (기입 : <input type="text" style="width:7em;">)'));
+    trEtc.appendChild(el('td',{colspan:'2'}, radioCell('q18-etc','q18-etc')));
+    trEtc.appendChild(el('td',null, numCell('명','q18-u-etc')));
+    trEtc.appendChild(el('td',null, numCell('건','q18-c-etc')));
+    tb.appendChild(trEtc);
+  })();
+
+  // 문19-1
+  (function(){
+    const table = document.getElementById('tbl-q19-1');
+    const thead = el('thead');
+    thead.innerHTML = `<tr>
+      <th>장애 유형 구분</th>
+      <th colspan="2">도서관 이용 교육<sup>24)</sup></th>
+      <th colspan="2">정보 활용 교육<sup>25)</sup></th>
+      <th colspan="2">문화 프로그램<sup>26)</sup></th>
+      <th colspan="2">독서 관련 프로그램<sup>27)</sup></th>
+      <th colspan="2">기타</th>
+    </tr>`;
+    table.appendChild(thead);
+    const tb = el('tbody');
+    const rows = ['시각장애','청각장애','지체·뇌병변장애','발달장애','기타 유형 장애','계'];
+    rows.forEach((r,i)=>{
+      const tr = el('tr');
+      tr.appendChild(el('td',{class:'rowlabel'}, r));
+      for(let c=0;c<5;c++){
+        tr.appendChild(el('td',null, numCell('회','q19-'+i+'-'+c+'-a')));
+        tr.appendChild(el('td',null, numCell('명','q19-'+i+'-'+c+'-b')));
+      }
+      tb.appendChild(tr);
+    });
+    table.appendChild(tb);
+  })();
+
+  // 문11-2
+  (function(){
+    const tb = document.querySelector('#tbl-q11-2 tbody');
+    const thead = el('thead');
+    thead.innerHTML = `<tr><th rowspan="2">구분</th><th colspan="2">정규직(A)</th><th colspan="2">비정규직(B)</th><th colspan="2">계(A+B)</th></tr>
+      <tr><th>남</th><th>여</th><th>남</th><th>여</th><th>남</th><th>여</th></tr>`;
+    document.querySelector('#tbl-q11-2').appendChild(thead);
+    const tr = el('tr');
+    tr.appendChild(el('td',{class:'rowlabel'},'인원 수(명)'));
+    for(let c=0;c<6;c++) tr.appendChild(el('td',null, numCell('명','q112-'+c)));
+    tb.appendChild(tr);
+  })();
+
+  // 문11-3
+  (function(){
+    const table = document.getElementById('tbl-q11-3');
+    const thead = el('thead');
+    thead.innerHTML = `<tr>
+      <th colspan="3">사서</th><th colspan="2">사회복지사</th><th colspan="3">점역·교정사</th>
+      <th>독서지도사</th><th>수어통역사</th><th>농통역사<sup>8)</sup></th><th>보조공학사<sup>9)</sup></th><th>특수교사</th><th>기타</th>
+    </tr>
+    <tr>
+      <th>1급</th><th>2급</th><th>준사서</th><th>1급</th><th>2급</th><th>1급</th><th>2급</th><th>3급</th>
+      <th></th><th></th><th></th><th></th><th></th><th></th>
+    </tr>`;
+    table.appendChild(thead);
+    const tb = el('tbody');
+    const tr = el('tr');
+    for(let c=0;c<14;c++) tr.appendChild(el('td',null, numCell('명','q113-'+c)));
+    tb.appendChild(tr);
+    table.appendChild(tb);
+  })();
+
+  // ---------- branching logic ----------
+  function bind(name, map){
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r=>{
+      r.addEventListener('change', ()=>{
+        const val = document.querySelector(`input[name="${name}"]:checked`)?.value;
+        Object.keys(map).forEach(id=>{
+          const el = document.getElementById(id);
+          if(el) el.hidden = !map[id].includes(val);
+        });
+      });
+    });
+  }
+  bind('q6', {'q6-1':['room','corner'], 'q6-2':['room','corner']});
+  bind('q11', {'q11-1':['no'], 'q11-2':['yes'], 'q11-3':['yes']});
+  bind('q11-1', {'q11-2':['yes'], 'q11-3':['yes']});
+  // when q11=yes should also open 11-2/11-3 directly; special-case combine
+  document.querySelectorAll('input[name="q11"]').forEach(r=>{
+    r.addEventListener('change', ()=>{
+      const val = document.querySelector('input[name="q11"]:checked')?.value;
+      if(val==='yes'){
+        document.getElementById('q11-2').hidden=false;
+        document.getElementById('q11-3').hidden=false;
+        document.getElementById('q11-1').hidden=true;
+      }
+    });
+  });
+  bind('q12', {'q12-1':['yes'],'q12-2':['yes']});
+  bind('q13', {'q13-1':['yes']});
+  bind('q14', {'q14-1':['yes']});
+  bind('q19', {'q19-1':['yes']});
+  bind('q20', {'q20-1':['yes']});
+  bind('q21', {'q21-1':['yes']});
+  bind('q22', {'q22-1':['yes'],'q22-2':['yes'],'q22-3':['yes']});
+  bind('p1', {'p2':['yes']});
+
+  // ---------- section-active highlighting ----------
+  const chips = Array.from(document.querySelectorAll('.navchip'));
+  const targets = chips.map(c=>document.querySelector(c.getAttribute('href')));
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const idx = targets.indexOf(entry.target);
+      if(idx>-1 && entry.isIntersecting){
+        chips.forEach(c=>c.classList.remove('active'));
+        chips[idx].classList.add('active');
+      }
+    });
+  }, {rootMargin:'-40% 0px -55% 0px'});
+  targets.forEach(t=>t && io.observe(t));
+
+  // ---------- local draft save ----------
+  const STORE_KEY = 'univ-lib-survey-draft-v1';
+  const saveStateEl = document.getElementById('savestate');
+  function collect(){
+    const data = {};
+    document.querySelectorAll('input[id], textarea[id]').forEach(i=>{ data[i.id]=i.value; });
+    document.querySelectorAll('input[type=radio][name]').forEach(i=>{ if(i.checked) data['radio:'+i.name]=i.value || i.id; });
+    document.querySelectorAll('input[type=checkbox][id]').forEach(i=>{ data['chk:'+i.id]=i.checked; });
+    return data;
+  }
+  function save(){
+    try{
+      localStorage.setItem(STORE_KEY, JSON.stringify(collect()));
+      saveStateEl.textContent = '마지막 저장: ' + new Date().toLocaleTimeString('ko-KR');
+    }catch(e){ saveStateEl.textContent = '이 브라우저에서는 임시 저장을 사용할 수 없습니다.'; }
+  }
+  function load(){
+    try{
+      const raw = localStorage.getItem(STORE_KEY);
+      if(!raw) return;
+      const data = JSON.parse(raw);
+      Object.keys(data).forEach(k=>{
+        if(k.startsWith('radio:')){
+          const name = k.slice(6);
+          const val = data[k];
+          const target = document.querySelector(`input[name="${name}"][value="${val}"]`) || document.getElementById(val);
+          if(target){ target.checked = true; target.dispatchEvent(new Event('change')); }
+        } else if(k.startsWith('chk:')){
+          const el = document.getElementById(k.slice(4));
+          if(el) el.checked = data[k];
+        } else {
+          const el = document.getElementById(k);
+          if(el) el.value = data[k];
+        }
+      });
+      saveStateEl.textContent = '이전 임시 저장본을 불러왔습니다.';
+    }catch(e){}
+  }
+  document.getElementById('btnSave').addEventListener('click', save);
+  document.getElementById('btnReset').addEventListener('click', ()=>{
+    if(confirm('입력한 모든 내용을 지울까요? 이 작업은 되돌릴 수 없습니다.')){
+      localStorage.removeItem(STORE_KEY);
+      location.reload();
+    }
+  });
+  window.addEventListener('DOMContentLoaded', load);
+  load();
+})();
+</script>
+</body>
+</html>
