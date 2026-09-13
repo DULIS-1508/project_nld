@@ -405,7 +405,7 @@
     "지역": "강원",
     "시군구": "원주시",
     "설립구분": "국립",
-    "match_method": "override"
+    "match_method": "override:국립강릉원주대학교"
    },
    {
     "lib_row_name": "국립강릉원주대학교 중앙도서관",
@@ -415,7 +415,7 @@
     "지역": "강원",
     "시군구": "강릉시",
     "설립구분": "국립",
-    "match_method": "override"
+    "match_method": "override:국립강릉원주대학교"
    }
   ],
   "disability_center": [
@@ -1046,7 +1046,7 @@
     "지역": "경북",
     "시군구": "경주시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:서라벌대학교"
    },
    {
     "lib_row_name": "신경주대학교 학술정보원",
@@ -3058,7 +3058,7 @@
     "지역": "전남",
     "시군구": "담양군",
     "설립구분": "공립",
-    "match_method": "override"
+    "match_method": "override:전남도립대학교"
    }
   ],
   "disability_center": [
@@ -5618,7 +5618,7 @@
     "지역": "전북",
     "시군구": "익산시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:원광보건대학교"
    }
   ],
   "disability_center": [
@@ -6624,7 +6624,7 @@
     "지역": "경남",
     "시군구": "거창군",
     "설립구분": "공립",
-    "match_method": "override"
+    "match_method": "override:경남도립거창대학"
    },
    {
     "lib_row_name": "경남도립남해대학 도서관",
@@ -6634,7 +6634,7 @@
     "지역": "경남",
     "시군구": "남해군",
     "설립구분": "공립",
-    "match_method": "override"
+    "match_method": "override:경남도립남해대학"
    },
    {
     "lib_row_name": "국립창원대학교 도서관",
@@ -9773,7 +9773,7 @@
     "지역": "서울",
     "시군구": "서울시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅰ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅰ대학서울정수캠퍼스 도서관",
@@ -9783,7 +9783,7 @@
     "지역": "서울",
     "시군구": "서울시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅰ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅰ대학성남캠퍼스 도서관",
@@ -9793,7 +9793,7 @@
     "지역": "경기",
     "시군구": "성남시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅰ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅰ대학제주캠퍼스 도서관",
@@ -9803,7 +9803,7 @@
     "지역": "제주",
     "시군구": "제주시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅰ대학"
    }
   ],
   "disability_center": []
@@ -9826,7 +9826,7 @@
     "지역": "인천",
     "시군구": "인천시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅱ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅱ대학화성캠퍼스 도서관",
@@ -9836,7 +9836,7 @@
     "지역": "경기",
     "시군구": "화성시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅱ대학"
    }
   ],
   "disability_center": []
@@ -9859,7 +9859,7 @@
     "지역": "강원",
     "시군구": "강릉시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅲ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅲ대학원주캠퍼스 도서관",
@@ -9869,7 +9869,7 @@
     "지역": "강원",
     "시군구": "원주시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅲ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅲ대학춘천캠퍼스 도서관",
@@ -9879,7 +9879,7 @@
     "지역": "강원",
     "시군구": "춘천시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅲ대학"
    }
   ],
   "disability_center": []
@@ -9902,7 +9902,7 @@
     "지역": "충남",
     "시군구": "아산시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅳ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅳ대학청주캠퍼스 도서관",
@@ -9912,7 +9912,7 @@
     "지역": "충북",
     "시군구": "청주시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅳ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅳ대학충남캠퍼스 도서관",
@@ -9922,7 +9922,7 @@
     "지역": "충남",
     "시군구": "홍성군",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅳ대학"
    }
   ],
   "disability_center": []
@@ -9945,7 +9945,7 @@
     "지역": "광주",
     "시군구": "광주시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅴ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅴ대학순천캠퍼스 도서관",
@@ -9955,7 +9955,7 @@
     "지역": "전남",
     "시군구": "순천시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅴ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅴ대학익산캠퍼스 도서관",
@@ -9965,7 +9965,7 @@
     "지역": "전북",
     "시군구": "익산시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅴ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅴ대학전남캠퍼스 도서관",
@@ -9975,7 +9975,7 @@
     "지역": "전남",
     "시군구": "무안군",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅴ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅴ대학전북캠퍼스 도서관",
@@ -9985,7 +9985,7 @@
     "지역": "전북",
     "시군구": "김제시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅴ대학"
    }
   ],
   "disability_center": []
@@ -10008,7 +10008,7 @@
     "지역": "경북",
     "시군구": "구미시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅵ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅵ대학대구캠퍼스 도서관",
@@ -10018,7 +10018,7 @@
     "지역": "대구",
     "시군구": "대구시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅵ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅵ대학영남융합기술캠퍼스 도서관",
@@ -10028,7 +10028,7 @@
     "지역": "대구",
     "시군구": "대구시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅵ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅵ대학영주캠퍼스 도서관",
@@ -10038,7 +10038,7 @@
     "지역": "경북",
     "시군구": "영주시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅵ대학"
    }
   ],
   "disability_center": []
@@ -10061,7 +10061,7 @@
     "지역": "부산",
     "시군구": "부산시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅶ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅶ대학부산캠퍼스 도서관",
@@ -10071,7 +10071,7 @@
     "지역": "부산",
     "시군구": "부산시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅶ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅶ대학울산캠퍼스 도서관",
@@ -10081,7 +10081,7 @@
     "지역": "울산",
     "시군구": "울산시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅶ대학"
    },
    {
     "lib_row_name": "한국폴리텍Ⅶ대학진주캠퍼스 도서관",
@@ -10091,7 +10091,7 @@
     "지역": "경남",
     "시군구": "진주시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍Ⅶ대학"
    }
   ],
   "disability_center": []
@@ -10114,7 +10114,7 @@
     "지역": "경북",
     "시군구": "영천시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍특성화"
    },
    {
     "lib_row_name": "한국폴리텍특성화 바이오캠퍼스 도서관",
@@ -10124,7 +10124,7 @@
     "지역": "충남",
     "시군구": "논산시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍특성화"
    },
    {
     "lib_row_name": "한국폴리텍특성화 반도체융합캠퍼스 도서관",
@@ -10134,7 +10134,7 @@
     "지역": "경기",
     "시군구": "안성시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍특성화"
    },
    {
     "lib_row_name": "한국폴리텍특성화 항공캠퍼스 도서관",
@@ -10144,7 +10144,7 @@
     "지역": "경남",
     "시군구": "사천시",
     "설립구분": "사립",
-    "match_method": "override"
+    "match_method": "override:한국폴리텍특성화"
    }
   ],
   "disability_center": []

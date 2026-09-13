@@ -98,7 +98,7 @@ def match_lib_row(lib_name):
     # tier 0: manual overrides (mergers/renames verified via web search)
     for prefix, target in OVERRIDE_STARTSWITH:
         if lib_name.startswith(prefix) and target in f1_exact_set:
-            return target, 'override'
+            return target, f'override:{prefix}'
     # tier 1: literal prefix match against full (parenthesized) names, longest wins
     for fn in sorted_full_names:
         if lib_name.startswith(fn):
@@ -156,7 +156,7 @@ while i < len(rows3):
         how = None
         for prefix, target in OVERRIDE_STARTSWITH:
             if left.startswith(prefix) and target in f1_exact_set:
-                resolved, how = target, 'override'
+                resolved, how = target, f'override:{prefix}'
                 break
         if not resolved:
             resolved, how = resolve_school(left, name_full)
