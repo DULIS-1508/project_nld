@@ -99,6 +99,15 @@ def match_lib_row(lib_name):
     for prefix, target in OVERRIDE_STARTSWITH:
         if lib_name.startswith(prefix) and target in f1_exact_set:
             return target, f'override:{prefix}'
+    # tier 0.5: known main/branch-ambiguous base names - resolve by keyword BEFORE
+    # generic literal-prefix matching. Without this, a row like "동국대학교 WISE캠퍼스
+    # 학술정보원" (space, not "(WISE)") wrongly matches the bare "동국대학교" (본교)
+    # full-name prefix in tier 1, since that bare name is itself a literal prefix too.
+    for base, (branch_name, keyword) in SPECIAL_KEYWORDS.items():
+        if lib_name.startswith(base):
+            if keyword in lib_name:
+                return branch_name, 'keyword_branch'
+            return base, 'keyword_main'
     # tier 1: literal prefix match against full (parenthesized) names, longest wins
     for fn in sorted_full_names:
         if lib_name.startswith(fn):

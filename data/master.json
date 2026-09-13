@@ -507,7 +507,7 @@
     "지역": "서울",
     "시군구": "서울시",
     "설립구분": "사립",
-    "match_method": "full_prefix"
+    "match_method": "keyword_main"
    }
   ],
   "disability_center": [
@@ -548,7 +548,7 @@
     "지역": "충북",
     "시군구": "충주시",
     "설립구분": "사립",
-    "match_method": "full_prefix"
+    "match_method": "keyword_branch"
    }
   ],
   "disability_center": [
@@ -1199,7 +1199,7 @@
     "지역": "서울",
     "시군구": "서울시",
     "설립구분": "사립",
-    "match_method": "full_prefix"
+    "match_method": "keyword_main"
    }
   ],
   "disability_center": [
@@ -1240,7 +1240,7 @@
     "지역": "세종",
     "시군구": "조치원읍",
     "설립구분": "사립",
-    "match_method": "full_prefix"
+    "match_method": "keyword_branch"
    }
   ],
   "disability_center": [
@@ -2492,16 +2492,6 @@
   "비고": null,
   "libraries": [
    {
-    "lib_row_name": "동국대학교 WISE캠퍼스 학술정보원",
-    "본분교": "캠퍼스",
-    "대학구분": "대학",
-    "학교구분": "대학교",
-    "지역": "경북",
-    "시군구": "경주시",
-    "설립구분": "사립",
-    "match_method": "full_prefix"
-   },
-   {
     "lib_row_name": "동국대학교 중앙도서관",
     "본분교": "본교",
     "대학구분": "대학",
@@ -2509,7 +2499,7 @@
     "지역": "서울",
     "시군구": "서울시",
     "설립구분": "사립",
-    "match_method": "full_prefix"
+    "match_method": "keyword_main"
    }
   ],
   "disability_center": [
@@ -2541,7 +2531,18 @@
   "설립구분": "사립",
   "근거법령": "고등교육법(제2조)",
   "비고": "경주캠퍼스→WISE캠퍼스('22.4.26)",
-  "libraries": [],
+  "libraries": [
+   {
+    "lib_row_name": "동국대학교 WISE캠퍼스 학술정보원",
+    "본분교": "캠퍼스",
+    "대학구분": "대학",
+    "학교구분": "대학교",
+    "지역": "경북",
+    "시군구": "경주시",
+    "설립구분": "사립",
+    "match_method": "keyword_branch"
+   }
+  ],
   "disability_center": [
    {
     "raw_name": "동국대학교(WISE)_분교",
@@ -5011,7 +5012,7 @@
     "지역": "서울",
     "시군구": "서울시",
     "설립구분": "사립",
-    "match_method": "full_prefix"
+    "match_method": "keyword_main"
    },
    {
     "lib_row_name": "연세대학교 학술문화처 도서관",
@@ -5021,7 +5022,7 @@
     "지역": "서울",
     "시군구": "서울시",
     "설립구분": "사립",
-    "match_method": "full_prefix"
+    "match_method": "keyword_main"
    }
   ],
   "disability_center": [
@@ -5062,7 +5063,7 @@
     "지역": "강원",
     "시군구": "원주시",
     "설립구분": "사립",
-    "match_method": "full_prefix"
+    "match_method": "keyword_branch"
    },
    {
     "lib_row_name": "연세대학교(미래) 학술정보원",
@@ -5072,7 +5073,7 @@
     "지역": "강원",
     "시군구": "원주시",
     "설립구분": "사립",
-    "match_method": "full_prefix"
+    "match_method": "keyword_branch"
    }
   ],
   "disability_center": [
@@ -8102,7 +8103,7 @@
     "지역": "서울",
     "시군구": "서울시",
     "설립구분": "사립",
-    "match_method": "full_prefix"
+    "match_method": "keyword_main"
    }
   ],
   "disability_center": [
@@ -8143,7 +8144,7 @@
     "지역": "경기",
     "시군구": "안산시",
     "설립구분": "사립",
-    "match_method": "full_prefix"
+    "match_method": "keyword_branch"
    }
   ],
   "disability_center": [
